@@ -217,7 +217,7 @@ void db_close(Table* table) {
     }
 
     // Handle partial page at end of the file
-    uint32_t num_additional_rows = table->num_rows / ROWS_PER_PAGE;
+    uint32_t num_additional_rows = table->num_rows % ROWS_PER_PAGE;
     if (num_additional_rows > 0) {
         uint32_t page_num = num_full_pages;
         if (pager->pages[page_num] !=  NULL) {
